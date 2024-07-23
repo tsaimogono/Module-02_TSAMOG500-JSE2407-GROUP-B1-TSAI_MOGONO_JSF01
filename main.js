@@ -19,3 +19,17 @@ document.addEventListener('alpine:init', () => {
         get cartCount() {
             return this.cart.length;
         },
+        async init() {
+            this.loading = true;
+            try {
+                const [products, categories] = await Promise.all([DataProducts(), getCategories()]);
+                this.products = products;
+                this.originalProducts = [...this.products];
+                this.filteredProducts = [...this.products];
+                this.categories = categories.response;
+            } catch (error) {
+                console.error('Error fetching products or categories:', error);
+            } finally {
+                this.loading = false;
+            }
+        },
