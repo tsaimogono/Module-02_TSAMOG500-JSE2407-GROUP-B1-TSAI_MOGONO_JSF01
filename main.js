@@ -33,3 +33,25 @@ document.addEventListener('alpine:init', () => {
                 this.loading = false;
             }
         },
+        filterProducts() {
+            if (this.selectedCategory) {
+                this.filteredProducts = this.products.filter(product => product.category === this.selectedCategory);
+            } else {
+                this.filteredProducts = [...this.products];
+            }
+            this.sortProducts();
+        },
+        handleSort() {
+            this.sortProducts();
+        },
+        sortProducts() {
+            if (this.sorting === "low") {
+                this.filteredProducts.sort((a, b) => a.price - b.price);
+            } else if (this.sorting === "high") {
+                this.filteredProducts.sort((a, b) => b.price - a.price);
+            } else {
+                this.filteredProducts = [...this.originalProducts];
+                if (this.selectedCategory) {
+                    this.filteredProducts = this.filteredProducts.filter(product => product.category === this.selectedCategory);
+                }
+            }
