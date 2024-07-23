@@ -6,8 +6,10 @@ import { DataProducts, getCategories } from './Api';
 window.Alpine = Alpine;
 
 // Add an event listener for when Alpine.js initializes
-document.addEventListener('alpine:init', () => {
-  // Define the Alpine.js data component named 'products'
+document.addEventListener('alpine:init', () => {  
+  /**
+  * Alpine.js data component named 'products'.
+  */
     Alpine.data('products', () => ({
         products: [],
         originalProducts: [],
@@ -19,10 +21,17 @@ document.addEventListener('alpine:init', () => {
         cart: [],
         modalOpen: false,
         selectedProduct: {},
+         /**
+     * Get the number of items in the cart.
+     * @returns {number} Number of items in the cart
+     */
         get cartCount() {
             return this.cart.length;
             // Initialize the component by fetching product and category data
         },
+        /**
+         * Initialize the component by fetching product and category data.
+         */
         async init() {
             this.loading = true;
             try {
@@ -38,7 +47,9 @@ document.addEventListener('alpine:init', () => {
                 this.loading = false;
             }
         },
-        // Filter products based on the selected category
+        /**
+         * Filter products based on the selected category.
+         */
         filterProducts() {
             if (this.selectedCategory) {
                 this.filteredProducts = this.products.filter(product => product.category === this.selectedCategory);
@@ -47,9 +58,16 @@ document.addEventListener('alpine:init', () => {
             }
             this.sortProducts();
         },
+        /**
+         * Handle the sorting of products.
+         */
         handleSort() {
             this.sortProducts();
         },
+
+    /**
+     * Sort the products based on the selected sorting method.
+     */
         sortProducts() {
             if (this.sorting === "low") {
                 this.filteredProducts.sort((a, b) => a.price - b.price);
@@ -63,7 +81,10 @@ document.addEventListener('alpine:init', () => {
                 }
             }
           },
-          // Reset category and sorting filters
+
+    /**
+     * Reset category and sorting filters.
+     */
           resetFilters() {
               this.selectedCategory = '';
               this.sorting = 'default';

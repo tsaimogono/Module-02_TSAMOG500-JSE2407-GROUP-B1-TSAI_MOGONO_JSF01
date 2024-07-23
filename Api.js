@@ -1,4 +1,13 @@
-// Asynchronous function to fetch data for products
+
+/**
+ * Asynchronous function to fetch data for products.
+ * @async
+ * @function DataProducts
+ * @returns {Promise<Array<Object>>} A promise that resolves to an array of product objects.
+ * @throws {Error} Throws an error if the data fetching fails.
+ * @example
+ * DataProducts().then(products => console.log(products));
+ */
 export async function DataProducts() {
     const response = await fetch("https://fakestoreapi.com/products");
     const data = await response.json();
@@ -14,7 +23,15 @@ export async function DataProducts() {
     }));
   };
   
-// Asynchronous function to fetch product categories
+/**
+ * Asynchronous function to fetch product categories.
+ * @async
+ * @function getCategories
+ * @returns {Promise<Object>} A promise that resolves to an object containing an array of category names.
+ * @throws {Error} Throws an error if the data fetching fails.
+ * @example
+ * getCategories().then(categories => console.log(categories));
+ */
 export const getCategories = async () => {
     try {
         // Fetch the category data from the API
