@@ -55,3 +55,27 @@ document.addEventListener('alpine:init', () => {
                     this.filteredProducts = this.filteredProducts.filter(product => product.category === this.selectedCategory);
                 }
             }
+          },
+          resetFilters() {
+              this.selectedCategory = '';
+              this.sorting = 'default';
+              this.filteredProducts = [...this.originalProducts];
+          },
+          addToCart(product) {
+              this.cart.push(product);
+          },
+          toggleNavbar() {
+              this.navbarOpen = !this.navbarOpen;
+          },
+          openModal(productId) {
+              this.selectedProduct = this.products.find(product => product.id === productId);
+              this.modalOpen = true;
+          },
+          closeModal() {
+              this.modalOpen = false;
+          }
+      }));
+  });
+  
+  Alpine.start();
+  
