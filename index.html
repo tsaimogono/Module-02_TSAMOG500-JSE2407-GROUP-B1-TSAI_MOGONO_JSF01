@@ -53,6 +53,14 @@
       </nav>
     </header>
 
+     <!-- Filter and Sort Controls -->
+     <div class="max-w-screen-xl mx-auto mt-4 mb-4 flex justify-center items-center space-x-4">
+      <select x-model="selectedCategory" x-on:change="filterProducts" class="bg-gray-200 p-2 rounded">
+        <option value="">All Categories</option>
+        <template x-for="category in categories" :key="category">
+          <option :value="category" x-text="category"></option>
+        </template>
+      </select>
   
   
 
